@@ -1,0 +1,23 @@
+[
+  {
+    "name": "github/docs",
+    "description": "The open-source repository for GitHub's documentation.",
+    "language": "Markdown",
+    "starredAt": "2026-08-28",
+    "url": "https://github.com/github/docs"
+  },
+  {
+    "name": "microsoft/vscode",
+    "description": "Visual Studio Code is a code editor redefined and optimized for building and debugging modern applications.",
+    "language": "TypeScript",
+    "starredAt": "2026-08-21",
+    "url": "https://github.com/microsoft/vscode"
+  },
+  {
+    "name": "sindresorhus/awesome",
+    "description": "A curated list of awesome lists.",
+    "language": "Markdown",
+    "starredAt": "2026-08-14",
+    "url": "https://github.com/sindresorhus/awesome"
+  }
+]
