@@ -16,7 +16,12 @@
 
       <section aria-labelledby="repositories-heading">
         <h2 id="repositories-heading">Starred repositories</h2>
-        <p id="status" class="status" role="status">Loading repositories...</p>
+        <div id="status" class="status" role="status" aria-live="polite">
+          <p id="status-message">Loading repositories...</p>
+          <button id="retry-button" class="retry-button" type="button" hidden>
+            Try again
+          </button>
+        </div>
         <ul id="repository-list" class="repository-list"></ul>
       </section>
     </main>

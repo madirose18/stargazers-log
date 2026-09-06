@@ -1,8 +1,15 @@
 const repositoryList = document.querySelector("#repository-list");
 const status = document.querySelector("#status");
+const statusMessage = document.querySelector("#status-message");
+const retryButton = document.querySelector("#retry-button");
 
 function renderRepositories(repositories) {
   repositoryList.replaceChildren();
+
+  if (repositories.length === 0) {
+    statusMessage.textContent = "No starred repositories yet.";
+    return;
+  }
 
   repositories.forEach((repository) => {
     const item = document.createElement("li");
@@ -21,7 +28,12 @@ function renderRepositories(repositories) {
 
     const metadata = document.createElement("p");
     metadata.className = "repository-meta";
-    metadata.textContent = `${repository.language} · Starred ${repository.starredAt}`;
+    metadata.textContent = `${repository.language} · Starred `;
+
+    const date = document.createElement("time");
+    date.dateTime = repository.starredAt;
+    date.textContent = repository.starredAt;
+    metadata.append(date);
 
     item.append(title, description, metadata);
     repositoryList.append(item);
@@ -29,6 +41,9 @@ function renderRepositories(repositories) {
 }
 
 async function loadRepositories() {
+  retryButton.hidden = true;
+  statusMessage.textContent = "Loading repositories...";
+
   try {
     const response = await fetch("events.json");
 
@@ -37,12 +52,20 @@ async function loadRepositories() {
     }
 
     const repositories = await response.json();
+    if (!Array.isArray(repositories)) {
+      throw new Error("Repository data must be an array");
+    }
+
     renderRepositories(repositories);
-    status.textContent = `${repositories.length} repositories`;
+    if (repositories.length > 0) {
+      statusMessage.textContent = `${repositories.length} repositories`;
+    }
   } catch (error) {
-    status.textContent = "Unable to load starred repositories.";
+    statusMessage.textContent = "Unable to load starred repositories.";
+    retryButton.hidden = false;
     console.error(error);
   }
 }
 
+retryButton.addEventListener("click", loadRepositories);
 loadRepositories();

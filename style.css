@@ -60,8 +60,21 @@ h2 {
   color: #57606a;
 }
 
-.status:empty {
-  display: none;
+.retry-button {
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.75rem;
+  color: #fff;
+  background: #0969da;
+  border: 1px solid #0969da;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.retry-button:hover,
+.retry-button:focus-visible {
+  background: #0558b5;
 }
 
 .repository-list {
